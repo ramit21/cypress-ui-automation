@@ -137,14 +137,19 @@ describe('Our first suite', () => {
             .find('nb-checkbox')
             .click()
             .find('.custom-checkbox')
-            .invoke('attr', 'class')
-            //.should('contain', 'checked')
+            .invoke('attr', 'class') //using INVOKE to fetch value of attribute named class
+            //.should('contain', 'checked') //you can use either of this (should) or below way to assert
             .then(classValue => {
                 expect(classValue).to.contain('checked')
             })
 
     })
 
+    // 'DATEPICKER'
+    //Datepicker's selected date value doesn't show up in the DOM,
+    // hence use PROPERTY to get the value of the date selected
+    //Date selected from datepicker can be from another month, that's why additional 
+    // if else logic in the test case to assert the date accordingly
     it('assert property', () => {
 
         function selectDayFromCurrent(day){
@@ -176,6 +181,9 @@ describe('Our first suite', () => {
         })
     })
 
+    // You can use either click() or check() to select a checkbox/radio button
+    // Use FORCE:TRUE to select checkboxes which are disabled on the DOM 
+    //   and not directly clickable on the ui as such
     it('radio button', () => {
         cy.visit('/')
         cy.contains('Forms').click()
@@ -183,7 +191,7 @@ describe('Our first suite', () => {
 
         cy.contains('nb-card', 'Using the Grid').find('[type="radio"]').then( radioButtons => {
             cy.wrap(radioButtons)
-                .first()
+                .first()    // FIRST() IS SAME AS EQ(0)
                 .check({force: true})
                 .should('be.checked')
 
@@ -288,6 +296,7 @@ describe('Our first suite', () => {
 
     })
 
+    //No hover action in Cypress, hence use click() operation.
     it('tooltip' , () => {
         cy.visit('/')
         cy.contains('Modal & Overlays').click()
@@ -303,20 +312,21 @@ describe('Our first suite', () => {
         cy.contains('Tables & Data').click()
         cy.contains('Smart Table').click()
         
-        //1
+        //1 (this is flaky as it's dependant on firing of windoesLconfirm event
+        //     hence better to use method 2 or 3 below)
         // cy.get('tbody tr').first().find('.nb-trash').click()
         // cy.on('window:confirm', (confirm) => {
         //     expect(confirm).to.equal('Are you sure you want to delete?')
         // })
 
-        2
+        //2
         const stub = cy.stub()
         cy.on('window:confirm', stub)
         cy.get('tbody tr').first().find('.nb-trash').click().then(() => {
             expect(stub.getCall(0)).to.be.calledWith('Are you sure you want to delete?')
         })
 
-        //3
+        //3 (not confirming the popup, instead cancelling it)
         cy.get('tbody tr').first().find('.nb-trash').click()
         cy.on('window:confirm', () => false)
 
