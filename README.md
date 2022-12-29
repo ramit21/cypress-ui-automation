@@ -65,12 +65,15 @@ You may configure npx cypress commands as npm script by adding them under script
 
 ### env properties
 
-You can pass env properties from command line using --env. eg 'npx cypress run --env dbPassword=value'
+You can give env variables in Cypress.config.js but its not a good place for passwords. You can refer to these passwords in spec.js code as Cypress.env("<envVarName>")
 
-You can also give env variables in Cypress.config.js but its not a good place for passwords. You can refer to these passwords in spec.js code as Cypress.env("<envVarName>")
+You can also specify your env variables (esp passwords) in a cypress.env.json file, which can then be added to gitignore and not checked into code repo.
 
-You can also specify your env variables (esp passwords) in a  file, which can then be added to gitignore and not checked into code repo.
+You can also pass env properties from command line using --env. eg 'npx cypress run --env dbPassword=value'.
 
 ### test reports
 
+You can generate test reports by using 'Mochawesome reporters'.
+
+https://docs.cypress.io/guides/tooling/reporters#Examples
 
