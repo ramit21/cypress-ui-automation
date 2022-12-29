@@ -14,12 +14,7 @@ npm install cypress --save-dev # one time Cypress install
 npx cypress open # opens console where you can select e2e and browser to run suite
 ```
 
-## If setting up a project from scratch, configure Cypress on your app
-```
-npm install cypress --save-dev
-npx cypress open 
-```
-Above command opens cypress and creates config files in the project like cypress.config.ts, a cypress folder with e2e.ts, commands.ts and example.json. Replace cypress.config.ts with js file as mentioned in this url: https://docs.cypress.io/guides/references/configuration. Other two ts files are also renamed to js.
+Above command opens opens cypress console, and if when run for the first time on a project, creates config files in the project like cypress.config.ts, a cypress folder with e2e.ts, commands.ts and example.json. Replace cypress.config.ts with js file as mentioned in this url: https://docs.cypress.io/guides/references/configuration. Other two ts files are also renamed to js.
 
 ## Cypress folder structure and important files
 
