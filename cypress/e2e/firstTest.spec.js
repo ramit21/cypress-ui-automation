@@ -29,7 +29,7 @@ describe('Our first suite', () => {
         //by Tag name and Attribute with value
         cy.get('input[placeholder="Email"]')
 
-        //by two different attributes
+        //by two different attributes 
         cy.get('[placeholder="Email"][type="email"]')
 
         //by tag name, Attribute with value, ID and Class name
@@ -49,8 +49,14 @@ describe('Our first suite', () => {
 
         cy.contains('Sign in')
 
+        //ACTS LIKE AND CONDITION: 
+        //find elemnt with text Sign in, as well as attribute status with value warning
         cy.contains('[status="warning"]','Sign in')
 
+        //PARENTS: to travel up the dom elements
+        // find: find withing the dom elements
+        // should: to assert values.
+        // click() to perform mouse click on check boxes, buttons etc.
         cy.get('#inputEmail3')
             .parents('form')
             .find('button')
@@ -82,7 +88,11 @@ describe('Our first suite', () => {
         // fistForm.find('[for="inputPassword2"]').should('contain', 'Password')
         // secondForm.find('[for="exampleInputEmail1"]').should('contain', 'Email address')
 
-        //cypress style
+        //cypress style: ASYNC MODE
+        // note that firstForm captured below is a jQuery element and not a Cypress element,
+        // hence we use Chai framework to assert it (expect.to.equal)
+        // Use cy.wrap()<element>) to convert the jquery element back to Cypress element 
+        // to be able to perform cypress related operations like find() and should() assertions etc.
 
         cy.contains('nb-card', 'Using the Grid').then( firstForm => {
             const emailLabelFirst = firstForm.find('[for="inputEmail1"]').text()
