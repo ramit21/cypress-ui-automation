@@ -9,12 +9,14 @@ Cypress is a compelte framework, whereas Selenium is a library. Cypress being JS
 
 ```
 npm install
-npm start # start the app
-
+npm start # start the web app to be tested
+npm install cypress --save-dev # one time Cypress install
+npx cypress open # opens console where you can select e2e and browser to run suite
 ```
 
 ## If setting up a project from scratch, you would do following
 ```
 npm install cypress --save-dev
-npx cypress open # opens cypress and gives you config for cypress.config.ts (already added in this project)
-``
+npx cypress open 
+```
+Above command opens cypress and help create config files in the project like cypress.config.ts, e2e.ts, commands.ts and example.json. Replace cypress.config.ts with js file as mentioned in this url: https://docs.cypress.io/guides/references/configuration. Other two ts files are also renamed to js.
